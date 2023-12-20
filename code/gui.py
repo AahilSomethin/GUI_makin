@@ -20,7 +20,6 @@ class Main(customtkinter.CTk):
         self.grid_columnconfigure((2, 3), weight=0)
         self.grid_rowconfigure((0, 1, 2), weight=1)
 
-
         # create sidebar frame with widgets
         self.sidebar_frame = customtkinter.CTkFrame(self, width=140, corner_radius=0)
         self.sidebar_frame.grid(row=0, column=0, rowspan=4, sticky="nsew")
@@ -48,22 +47,7 @@ class Main(customtkinter.CTk):
         self.entry = customtkinter.CTkEntry(self, placeholder_text="What do you wish to find")
         self.entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
 
-        # Load an image
-        #image_path = "path/to/your/image.jpg"  # Replace with the actual path to your image
-        #img = Image.open(image_path)
-        #img = img.resize((20, 20), Image.ANTIALIAS)  # Adjust the size as needed
-
-        # Convert the image to Tkinter PhotoImage format
-        #img_tk = ImageTk.PhotoImage(img)
-
-        # Update the main button with the image
-        #self.main_button_1 = customtkinter.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), image=img_tk, compound="center")
-       #self.main_button_1.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
-
-        # Save a reference to the image to prevent garbage collection
-        #self.main_button_1.image = img_tk
-
-        self.main_button_1 = customtkinter.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"))
+        self.main_button_1 = customtkinter.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), command=self.search)
         self.main_button_1.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
 
         # create textbox
@@ -80,20 +64,44 @@ class Main(customtkinter.CTk):
         self.progressbar_1 = customtkinter.CTkProgressBar(self.slider_progressbar_frame)
         self.progressbar_1.grid(row=1, column=0, padx=(20, 10), pady=(10, 10), sticky="ew")
 
-
         # set default values
         self.sidebar_button_1.configure(state="enabled", text="Login")
         self.sidebar_button_2.configure(state="enabled", text="Register")
         self.sidebar_button_3.configure(state="disabled", text="Logout")
-        #if self.sidebar_button_logged in state enable
+        # if self.sidebar_button_logged in state enable
         self.main_button_1.configure(state="enabled", text="Search")
         self.appearance_mode_optionemenu.set("Dark")
         self.scaling_optionemenu.set("100%")
-        self.progressbar_1.configure(mode="indeterminnate")
+        self.progressbar_1.configure(mode="indeterminate")
         self.progressbar_1.start()
         self.textbox.insert("0.0", "Movies\n\n" + "Shrek is awesome\n\n")
         self.seg_button_1.configure(values=["All", "New", "cartoon", "Action", "Comedy", "Drama"])
         self.seg_button_1.set("All")
+
+                # Load an image
+        #image_path = "path/to/your/image.jpg"  # Replace with the actual path to your image
+        #img = Image.open(image_path)
+        #img = img.resize((20, 20), Image.ANTIALIAS)  # Adjust the size as needed
+
+        # Convert the image to Tkinter PhotoImage format
+        #img_tk = ImageTk.PhotoImage(img)
+
+        # Update the main button with the image
+        #self.main_button_1 = customtkinter.CTkButton(master=self, fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"), image=img_tk, compound="center")
+       #self.main_button_1.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
+
+        # Save a reference to the image to prevent garbage collection
+        #self.main_button_1.image = img_tk
+
+    def search(self):
+        # Get the search query from the entry
+        search_query = self.entry.get()
+
+        # Perform the search (you can customize this part based on your application logic)
+        # For now, let's just print the search query
+        print("Search Query:", search_query)
+
+        # Update the display or perform other actions based on the search query
 
     def open_input_dialog_event(self):
         dialog = customtkinter.CTkInputDialog(text="Type in a number:", title="CTkInputDialog")
@@ -106,18 +114,15 @@ class Main(customtkinter.CTk):
         new_scaling_float = int(new_scaling.replace("%", "")) / 100
         customtkinter.set_widget_scaling(new_scaling_float)
 
-
     def login(self):
         new_window = customtkinter.CTkToplevel(self)
         new_window.title("Signup/login")
         new_window.geometry(f"{500}x{580}")
 
-
     def signup(self):
         new_window = customtkinter.CTkToplevel(self)
         new_window.title("Signup/login")
         new_window.geometry(f"{500}x{580}")
-
 
     def logout(self):
         print("works logout")
@@ -125,5 +130,7 @@ class Main(customtkinter.CTk):
 
 if __name__ == "__main__":
     app = Main()
+    app.mainloop()
+
     app.mainloop()
     
