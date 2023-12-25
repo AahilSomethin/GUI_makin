@@ -46,6 +46,11 @@ class Main(customtkinter.CTk):
                                                                command=self.change_scaling_event)
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
+
+        # create empty frame for the right sidebar
+        self.right_sidebar_frame = customtkinter.CTkFrame(self)
+        self.right_sidebar_frame.grid(row=0, column=3, rowspan=4, sticky="nsew")
+
         # create main entry and button
         self.entry = customtkinter.CTkEntry(self, placeholder_text="What do you wish to find")
         self.entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
@@ -107,16 +112,17 @@ class Main(customtkinter.CTk):
         file_path = filedialog.askopenfilename(filetypes=[("Python files", "login and signup.py")])
     
         if file_path:
-            with open(file_path, 'r') as file:
+            with open("signup.py", 'r') as file:
                 content = file.read()
                 # You can do something with the content, like displaying it in a text widget
                 print(content)
+
 
     def signup(self):
         file_path = filedialog.askopenfilename(filetypes=[("Python files", "login and signup.py")])
         
         if file_path:
-            with open(file_path, 'r') as file:
+            with open("signup.py", 'r') as file:
                 content = file.read()
                 # You can do something with the content, like displaying it in a text widget
                 print(content)
