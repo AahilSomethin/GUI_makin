@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+from PIL import Image, ImageTk
 from email.mime import image
 import customtkinter
 
@@ -46,7 +47,6 @@ class Main(customtkinter.CTk):
                                                                command=self.change_scaling_event)
         self.scaling_optionemenu.grid(row=8, column=0, padx=20, pady=(10, 20))
 
-
         # create empty frame for the right sidebar
         self.right_sidebar_frame = customtkinter.CTkFrame(self)
         self.right_sidebar_frame.grid(row=0, column=3, rowspan=4, sticky="nsew")
@@ -55,13 +55,25 @@ class Main(customtkinter.CTk):
         self.entry = customtkinter.CTkEntry(self, placeholder_text="What do you wish to find")
         self.entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
 
-        self.main_button_1 = customtkinter.CTkButton(master=self, fg_color="transparent", border_width=2,
-                                                      text_color=("gray10", "#DCE4EE"), command=self.search)
-        self.main_button_1.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
-
         # create textbox
         self.textbox = customtkinter.CTkTextbox(self, width=350)
         self.textbox.grid(row=0, column=1, padx=(20, 0), pady=(20, 0), sticky="nsew")
+
+        # Load an image with specific dimensions (7 rem by 4 rem)
+        image_path = "code/download.jpg"  # Replace with the actual path to your image
+        img = Image.open(image_path)
+        img = img.resize((4 * 16, 7 * 16), Image.ANTIALIAS)  # Adjust the size as needed
+
+        # Convert the image to Tkinter PhotoImage format
+        img_tk = ImageTk.PhotoImage(img)
+
+        # create main button
+        self.main_button_1 = customtkinter.CTkButton(master=self, fg_color="transparent", border_width=2,
+                                                      text_color=("gray10", "#DCE4EE"), image=img_tk, compound="center")
+        self.main_button_1.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
+
+        # Save a reference to the image to prevent garbage collection
+        self.main_button_1.image = img_tk
 
         # create slider and progressbar frame
         self.slider_progressbar_frame = customtkinter.CTkFrame(self, fg_color="transparent")
@@ -109,18 +121,17 @@ class Main(customtkinter.CTk):
         customtkinter.set_widget_scaling(new_scaling_float)
 
     def login(self):
-        file_path = filedialog.askopenfilename(filetypes=[("Python files", "login and signup.py")])
-    
+        file_path = filedialog.askopenfilename(filetypes=[("Python files", "signup.py")])
+
         if file_path:
             with open("signup.py", 'r') as file:
                 content = file.read()
                 # You can do something with the content, like displaying it in a text widget
                 print(content)
 
-
     def signup(self):
-        file_path = filedialog.askopenfilename(filetypes=[("Python files", "login and signup.py")])
-        
+        file_path = filedialog.askopenfilename(filetypes=[("Python files", "signup.py")])
+
         if file_path:
             with open("signup.py", 'r') as file:
                 content = file.read()
@@ -159,3 +170,4 @@ class Main(customtkinter.CTk):
 if __name__ == "__main__":
     app = Main()
     app.mainloop()
+
