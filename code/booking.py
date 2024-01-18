@@ -17,18 +17,27 @@ def add_padding(element, x=0, y=0):
 def select_film(event):
     selected_film = film_combobox.get()
     print(f"Selected Film: {selected_film}")
+    with open('bookings.txt', 'a' ) as f:
+        f.write(f"Selected Film: {selected_film}\n ")
 
 def select_showing(event):
     selected_showing = showing_combobox.get()
     print(f"Selected Showing: {selected_showing}")
+    with open('bookings.txt', 'a' ) as f:
+        f.write(f"Selected showing: {select_showing}\n ")
 
 def select_ticket_type(event):
     selected_ticket_type = ticket_type_combobox.get()
     print(f"Selected Ticket Type: {selected_ticket_type}")
+    with open('bookings.txt', 'a' ) as f:
+        f.write(f"Ticket type: {selected_ticket_type}\n ")
+
 
 def select_tickets(event):
     selected_tickets = tickets_spinbox.get()
     print(f"Selected # of Tickets: {selected_tickets}")
+    with open('bookings.txt', 'a' ) as f:
+        f.write(f"Ticket: {select_tickets}\n ")
 
 def check_availability():
     pass
