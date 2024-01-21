@@ -3,6 +3,7 @@ from tkinter import ttk
 from customtkinter import CTk
 from PIL import Image, ImageTk
 
+# Function to display an image on the GUI
 def show_image():
     img_path = "path_to_your_image"  # Update with the correct path
     img = Image.open(img_path)
@@ -11,39 +12,49 @@ def show_image():
     image_label.config(image=img)
     image_label.image = img
 
+# Function to add padding to an element
 def add_padding(element, x=0, y=0):
     return tk.Frame(master=element, height=y, width=x)
 
+# Event handler for selecting a film from the dropdown
 def select_film(event):
     selected_film = film_combobox.get()
     print(f"Selected Film: {selected_film}")
     with open('bookings.txt', 'a' ) as f:
         f.write(f"Selected Film: {selected_film}\n ")
 
+# Event handler for selecting a showing from the dropdown
 def select_showing(event):
     selected_showing = showing_combobox.get()
     print(f"Selected Showing: {selected_showing}")
     with open('bookings.txt', 'a' ) as f:
-        f.write(f"Selected showing: {select_showing}\n ")
+        f.write(f"Selected showing: {selected_showing}\n ")
 
+# Event handler for selecting a ticket type from the dropdown
 def select_ticket_type(event):
     selected_ticket_type = ticket_type_combobox.get()
     print(f"Selected Ticket Type: {selected_ticket_type}")
     with open('bookings.txt', 'a' ) as f:
         f.write(f"Ticket type: {selected_ticket_type}\n ")
 
-
+# Event handler for selecting the number of tickets using the spinbox
 def select_tickets(event):
     selected_tickets = tickets_spinbox.get()
     print(f"Selected # of Tickets: {selected_tickets}")
     with open('bookings.txt', 'a' ) as f:
-        f.write(f"Ticket: {select_tickets}\n ")
+        f.write(f"Ticket: {selected_tickets}\n ")
 
+# Placeholder function for checking availability (you can add your logic here)
 def check_availability():
     pass
 
+# Placeholder function for submitting a booking (you can add your logic here)
 def submit_booking():
     pass
+
+# Placeholder function for canceling a booking (replace with your cancellation logic)
+def cancel_booking():
+    print("Booking Cancelled")  # Add your cancellation logic here
 
 # Set up main window
 root = CTk()
@@ -103,6 +114,10 @@ booking_receipt_frame.pack(fill="both", expand=True)
 # Submit booking button
 submit_booking_button = ttk.Button(booking_receipt_frame, text="Submit Booking", command=submit_booking)
 submit_booking_button.pack(pady=20)
+
+# Cancel booking button
+cancel_booking_button = ttk.Button(booking_receipt_frame, text="Cancel Booking", command=cancel_booking)
+cancel_booking_button.pack(pady=20)
 
 # Add padding to the frame
 frame.pack_propagate(0)
