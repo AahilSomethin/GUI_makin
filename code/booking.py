@@ -46,15 +46,42 @@ def select_tickets(event):
 
 # Placeholder function for checking availability (you can add your logic here)
 def check_availability():
-    pass
+    selected_film = film_combobox.get()
+    selected_showing = showing_combobox.get()
+    selected_tickets = int(tickets_spinbox.get())
+
+    # Replace this with your availability logic
+    if selected_film == "Film 1" and selected_showing == "Showing 1":
+        if selected_tickets <= 5:
+            availability_result = "Available"
+        else:
+            availability_result = "Not enough tickets available"
+    else:
+        availability_result = "Film or showing not available"
+
+    print(f"Availability: {availability_result}")
+    with open('bookings.txt', 'a' ) as f:
+        f.write(f"Availability: {availability_result}\n ")
 
 # Placeholder function for submitting a booking (you can add your logic here)
 def submit_booking():
-    pass
+    selected_film = film_combobox.get()
+    selected_showing = showing_combobox.get()
+    selected_ticket_type = ticket_type_combobox.get()
+    selected_tickets = int(tickets_spinbox.get())
+
+    # Replace this with your booking logic
+    booking_details = f"Film: {selected_film}, Showing: {selected_showing}, Ticket Type: {selected_ticket_type}, Tickets: {selected_tickets}"
+    
+    print(f"Booking Confirmed!\n{booking_details}")
+    with open('bookings.txt', 'a' ) as f:
+        f.write(f"Booking Confirmed!\n{booking_details}\n ")
 
 # Placeholder function for canceling a booking (replace with your cancellation logic)
 def cancel_booking():
     print("Booking Cancelled")  # Add your cancellation logic here
+    with open('bookings.txt', 'a' ) as f:
+        f.write("Booking Cancelled\n ")
 
 # Set up main window
 root = CTk()
