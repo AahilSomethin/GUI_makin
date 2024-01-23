@@ -1,6 +1,12 @@
 import tkinter
 import customtkinter
 
+
+username = '123'
+password = '123'
+
+
+
 customtkinter.set_appearance_mode("System")
 customtkinter.set_default_color_theme("blue")
 
