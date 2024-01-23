@@ -60,9 +60,9 @@ class Main(customtkinter.CTk):
         self.textbox.grid(row=0, column=1, padx=(20, 0), pady=(20, 0), sticky="nsew")
 
         # Load an image with specific dimensions (7 rem by 4 rem)
-        image_path = "code/download.jpg"  # Replace with the actual path to your image
+        image_path = "download.jpeg"  # Replace with the actual path to your image
         img = Image.open(image_path)
-        img = img.resize((4 * 16, 7 * 16), Image.ANTIALIAS)  # Adjust the size as needed
+        img = img.resize((4 * 16, 7 * 16), Image.Resampling.LANCZOS)  # Adjust the size as needed
 
         # Convert the image to Tkinter PhotoImage format
         img_tk = ImageTk.PhotoImage(img)
