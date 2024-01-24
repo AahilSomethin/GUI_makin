@@ -1,3 +1,4 @@
+#(Mohamed Aahil Ahmed - S2102236,Ahmed Dhain Saeed - 22056946,Elgius Espin - S2201432)
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageTk
