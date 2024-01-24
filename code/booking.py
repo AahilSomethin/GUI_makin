@@ -5,9 +5,9 @@ from PIL import Image, ImageTk
 
 # Function to display an image on the GUI
 def show_image():
-    img_path = "path_to_your_image"  # Update with the correct path
+    img_path = "download.jpeg"  # Update with the correct path
     img = Image.open(img_path)
-    img = img.resize((100, 100), Image.ANTIALIAS)
+    img = img.resize((100, 100), Image.Resampling.LANCZOS)
     img = ImageTk.PhotoImage(img)
     image_label.config(image=img)
     image_label.image = img
