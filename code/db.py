@@ -1,3 +1,4 @@
+#(Elgius Espin - S2201432)
 import os
 import json
 from pymongo import MongoClient
